@@ -66,4 +66,25 @@ public class HashMapFunctions {
 
         return new int[] {};
     }
+
+    //Implement First Non-Repeating Character and Group Anagrams functions
+    //Explain the logic and time/space complexity of your solutions
+    // I use a HashMap to count the frequency of each character in the string. 
+    // Then I iterate through the map to find the first character with a count of 1, 
+    // which is the first non-repeating character.
+    // If no such character exists, I return a null character.
+    // Time complexity: O(n) to count characters + O(n) to find first non-repeating = O(n)
+    // Space complexity: O(n) in the worst case if all characters are unique
+    public static char firstNonRepeatingChar(String s) {
+        java.util.LinkedHashMap<Character, Integer> map = new java.util.LinkedHashMap<>();
+        for (char ch : s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+        for (java.util.Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey();
+            }
+        }
+        return '\0'; // Return null character if no non-repeating character is found
+    }
 }
